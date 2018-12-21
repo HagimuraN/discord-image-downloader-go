@@ -204,7 +204,7 @@ func getRawLinksOfMessage(message *discordgo.Message) []*DownloadItem {
 		})
 	}
 
-	foundLinks := xurls.Strict.FindAllString(message.Content, -1)
+	foundLinks := xurls.Strict().FindAllString(message.Content, -1)
 	for _, foundLink := range foundLinks {
 		links = append(links, &DownloadItem{
 			Link: foundLink,
@@ -219,7 +219,7 @@ func getRawLinksOfMessage(message *discordgo.Message) []*DownloadItem {
 		}
 
 		if embed.Description != "" {
-			foundLinks = xurls.Strict.FindAllString(embed.Description, -1)
+			foundLinks = xurls.Strict().FindAllString(embed.Description, -1)
 			for _, foundLink := range foundLinks {
 				links = append(links, &DownloadItem{
 					Link: foundLink,
